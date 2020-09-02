@@ -12,10 +12,7 @@ new Vue({
             this.monsterHealth = 100;
         },
         attack: function(){
-            let max = 10;
-            let min = 3;
-            let damage = Math.max(Math.floor(Math.random() * max) + 1, min);
-            this.monsterHealth -= damage;
+            this.monsterHealth -= this.calculateDamage(3, 10);
 
             if (this.monsterHealth <= 0) {
                 alert('You won!');
@@ -23,10 +20,7 @@ new Vue({
                 return;
             }
 
-            max = 12;
-            min = 5;
-            damage = Math.max(Math.floor(Math.random() * max) + 1, min);
-            this.playerHealth -= damage;
+            this.playerHealth -= this.calculateDamage(5, 12);
 
             if (this.playerHealth <= 0) {
                 alert('You lost!');
@@ -41,6 +35,9 @@ new Vue({
         },
         giveUp: function(){
 
+        },
+        calculateDamage: function(min, max) {
+            return Math.max(Math.floor(Math.random() * max) + 1, min);
         }
     }
 });
